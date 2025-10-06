@@ -13,18 +13,18 @@ Panduan lengkap untuk deploy aplikasi OkeComply ke Vercel.
 ### 1. Vercel Configuration (`vercel.json`)
 ```json
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
   "framework": "nextjs",
-  "regions": ["iad1", "sin1"]
+  "buildCommand": "npm run build"
 }
 ```
 
+**Note**: Multi-region deployment requires Pro/Enterprise plan. Free plan uses single region (auto-selected).
+
 ### 2. Next.js Configuration (`next.config.ts`)
-- ✅ Standalone output untuk optimasi
-- ✅ Package imports optimization
-- ✅ Image optimization
-- ✅ Performance settings
+- ✅ Package imports optimization untuk Chakra UI, Recharts
+- ✅ Image optimization dengan WebP/AVIF support
+- ✅ Performance settings dan compression
+- ✅ TypeScript dan ESLint configuration
 
 ### 3. Environment Variables
 Tidak diperlukan environment variables untuk mockup ini, semua data adalah static dummy.
