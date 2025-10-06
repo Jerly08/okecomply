@@ -19,9 +19,9 @@ import {
 import { Upload, Download, FileText, CheckCircle, AlertTriangle } from 'lucide-react'
 import MainLayout from '@/components/layout/MainLayout'
 import { useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 
-export default function ExcelUploadPage() {
+function ExcelUploadContent() {
   const searchParams = useSearchParams()
   const referenceNumber = searchParams?.get('ref') || 'PT. JAVA LOGISTICS'
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'uploading' | 'success' | 'error'>('idle')
@@ -357,5 +357,19 @@ export default function ExcelUploadPage() {
         </Card>
       </VStack>
     </MainLayout>
+  )
+}
+
+export default function ExcelUploadPage() {
+  return (
+    <Suspense fallback={
+      <MainLayout>
+        <Box p={8} textAlign="center">
+          <Text>Loading...</Text>
+        </Box>
+      </MainLayout>
+    }>
+      <ExcelUploadContent />
+    </Suspense>
   )
 }

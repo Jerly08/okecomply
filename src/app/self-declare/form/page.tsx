@@ -46,7 +46,7 @@ import {
 } from 'lucide-react'
 import MainLayout from '@/components/layout/MainLayout'
 import { useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 
 const tabs = [
   { name: 'Header', icon: FileText, color: 'blue.500' },
@@ -60,7 +60,7 @@ const tabs = [
   { name: 'Pernyataan', icon: CheckCircle, color: 'teal.500' },
 ]
 
-export default function DeclarationFormPage() {
+function DeclarationFormContent() {
   const searchParams = useSearchParams()
   const referenceNumber = searchParams?.get('ref') || 'PT. JAVA LOGISTICS'
   const [activeTab, setActiveTab] = useState(0)
@@ -275,5 +275,19 @@ export default function DeclarationFormPage() {
         </Card>
       </VStack>
     </MainLayout>
+  )
+}
+
+export default function DeclarationFormPage() {
+  return (
+    <Suspense fallback={
+      <MainLayout>
+        <Box p={8} textAlign="center">
+          <Text>Loading...</Text>
+        </Box>
+      </MainLayout>
+    }>
+      <DeclarationFormContent />
+    </Suspense>
   )
 }

@@ -558,8 +558,8 @@ export default function GoodsPage() {
                         <Button colorScheme="blue" size="lg">
                           Search HS Code
                         </Button>
-                      </VStack>
-                      
+                      </HStack>
+
                       <Box
                         w="full"
                         h="300px"
